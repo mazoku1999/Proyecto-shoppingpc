@@ -1,0 +1,1119 @@
+/* ════════════════════════════════════════════════════════════════════
+   SHOPPING PC — PREMIUM DARK THEME v4
+   Ultra-polished, every element redesigned
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Force fonts globally (exclude FA icons) ── */
+html, html body, html body *:not(.fa):not(.fas):not(.far):not(.fab):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+html {
+    background: #06090F !important;
+}
+
+html body {
+    background: #06090F !important;
+    color: #CBD5E1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+    line-height: 1.6 !important;
+    background-image:
+        radial-gradient(ellipse 80% 60% at 50% -30%, rgba(16,185,129,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 100% 100%, rgba(59,130,246,0.04) 0%, transparent 60%) !important;
+    background-attachment: fixed !important;
+}
+
+/* ════════════════════════════════════════════
+   NAVBAR — Frosted glass, top-locked
+   ════════════════════════════════════════════ */
+html body header.top {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+}
+
+html body .navbar,
+html body .navbar-default,
+html body .navbar-inverse,
+html body nav.navbar,
+html body header .navbar {
+    background: rgba(6, 9, 15, 0.78) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.02), 0 4px 24px rgba(0,0,0,0.25) !important;
+    min-height: 56px !important;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    z-index: 9999 !important;
+}
+
+html body .navbar-header { background: transparent !important; }
+
+html body .navbar-brand,
+html body .navbar-default .navbar-brand,
+html body a.navbar-brand {
+    font-weight: 800 !important;
+    font-size: 17px !important;
+    color: #F8FAFC !important;
+    letter-spacing: -0.4px !important;
+    padding: 15px 22px !important;
+    line-height: 26px !important;
+    background: transparent !important;
+    transition: all 0.2s ease !important;
+}
+
+html body .navbar-brand:hover,
+html body .navbar-default .navbar-brand:hover {
+    color: #10B981 !important;
+}
+
+html body .navbar-nav > li > a,
+html body .navbar-default .navbar-nav > li > a,
+html body .nav > li > a {
+    color: #8896AB !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    padding: 17px 14px !important;
+    background: transparent !important;
+    border: none !important;
+    transition: color 0.15s ease !important;
+}
+
+html body .navbar-nav > li > a:hover,
+html body .navbar-default .navbar-nav > li > a:hover,
+html body .navbar-default .navbar-nav > li > a:focus {
+    color: #F1F5F9 !important;
+    background: transparent !important;
+}
+
+html body .navbar-nav > .active > a,
+html body .navbar-default .navbar-nav > .active > a,
+html body .navbar-default .navbar-nav > .active > a:hover {
+    color: #10B981 !important;
+    background: transparent !important;
+    box-shadow: inset 0 -2px 0 #10B981 !important;
+}
+
+html body .navbar-nav > .open > a,
+html body .navbar-default .navbar-nav > .open > a,
+html body .navbar-default .navbar-nav > .open > a:hover,
+html body .navbar-default .navbar-nav > .open > a:focus {
+    color: #F1F5F9 !important;
+    background: rgba(255,255,255,0.06) !important;
+}
+
+html body .navbar-toggle,
+html body .navbar-default .navbar-toggle {
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    background: rgba(255,255,255,0.04) !important;
+    border-radius: 8px !important;
+    margin-top: 10px !important;
+}
+html body .navbar-toggle .icon-bar,
+html body .navbar-default .navbar-toggle .icon-bar { background: #8896AB !important; }
+html body .navbar-default .navbar-toggle:hover { background: rgba(255,255,255,0.08) !important; }
+html body .navbar-collapse { border-color: rgba(255,255,255,0.04) !important; background: transparent !important; }
+html body .caret { border-top-color: #64748B !important; border-bottom-color: #64748B !important; }
+
+/* ════════════════════════════════════════════
+   DROPDOWNS — Floating glass cards
+   ════════════════════════════════════════════ */
+html body .dropdown-menu,
+html body .navbar-default .navbar-nav .open .dropdown-menu {
+    background: rgba(10, 14, 26, 0.97) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.02) !important;
+    padding: 6px !important;
+    margin-top: 4px !important;
+    animation: ddReveal 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    min-width: 200px !important;
+    z-index: 10000 !important;
+}
+
+@keyframes ddReveal {
+    from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+html body .dropdown-menu > li > a,
+html body .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #8896AB !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 9px 14px !important;
+    border-radius: 7px !important;
+    transition: all 0.12s ease !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+html body .dropdown-menu > li > a:hover,
+html body .dropdown-menu > li > a:focus,
+html body .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    background: rgba(16,185,129,0.08) !important;
+    color: #10B981 !important;
+}
+
+html body .dropdown-menu .divider {
+    background: rgba(255,255,255,0.05) !important;
+    margin: 4px 10px !important;
+    border: none !important;
+    height: 1px !important;
+}
+
+/* ════════════════════════════════════════════
+   LAYOUT
+   ════════════════════════════════════════════ */
+html body .container { max-width: 1200px !important; }
+html body .container > .row { padding-top: 4px !important; }
+
+/* ════════════════════════════════════════════
+   PAGE HEADERS
+   ════════════════════════════════════════════ */
+html body .page-header {
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    padding-bottom: 16px !important;
+    margin: 28px 0 22px !important;
+}
+
+html body h1, html body h2, html body h3,
+html body h4, html body h5, html body h6,
+html body .page-header h1 {
+    color: #F1F5F9 !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.4px !important;
+}
+html body .page-header h1 { font-size: 24px !important; }
+
+/* ════════════════════════════════════════════
+   PANELS / CARDS — Premium glass
+   ════════════════════════════════════════════ */
+html body .panel,
+html body .panel-default,
+html body .panel-primary,
+html body .panel-success,
+html body .panel-info,
+html body .panel-warning,
+html body .panel-danger {
+    background: linear-gradient(160deg, rgba(14,19,33,0.85) 0%, rgba(10,14,26,0.92) 100%) !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.03) !important;
+    overflow: hidden !important;
+    margin-bottom: 20px !important;
+    transition: border-color 0.25s, box-shadow 0.25s !important;
+}
+
+html body .panel:hover {
+    border-color: rgba(16,185,129,0.15) !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 1px rgba(16,185,129,0.06) !important;
+}
+
+html body .panel-heading,
+html body .panel-default > .panel-heading,
+html body .panel-primary > .panel-heading,
+html body .panel-success > .panel-heading,
+html body .panel-info > .panel-heading,
+html body .panel-warning > .panel-heading,
+html body .panel-danger > .panel-heading {
+    background: rgba(255,255,255,0.025) !important;
+    color: #F1F5F9 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    padding: 14px 20px !important;
+    border-radius: 14px 14px 0 0 !important;
+}
+
+html body .panel-heading h3,
+html body .panel-heading .panel-title,
+html body .panel-title {
+    font-weight: 700 !important; font-size: 14px !important;
+    color: #F1F5F9 !important; margin: 0 !important;
+}
+
+html body .panel-body {
+    padding: 20px !important;
+    background: transparent !important;
+    color: #CBD5E1 !important;
+}
+
+html body .panel-footer {
+    background: rgba(255,255,255,0.02) !important;
+    border-top: 1px solid rgba(255,255,255,0.04) !important;
+    padding: 12px 20px !important;
+    color: #64748B !important;
+}
+
+/* ════════════════════════════════════════════
+   TABLES — The star of the show ⭐
+   ════════════════════════════════════════════ */
+html body .table,
+html body table.table,
+html body table {
+    background: transparent !important;
+    color: #CBD5E1 !important;
+    border-collapse: separate !important;
+    border-spacing: 0 4px !important;
+    border: none !important;
+    margin-bottom: 0 !important;
+}
+
+/* ── Table header ── */
+html body .table > thead > tr > th,
+html body .table-bordered > thead > tr > th,
+html body table > thead > tr > th {
+    background: transparent !important;
+    color: #64748B !important;
+    font-weight: 600 !important;
+    font-size: 10.5px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    border: none !important;
+    padding: 10px 18px 14px !important;
+    white-space: nowrap !important;
+    position: static !important;
+}
+
+/* ── Table rows — floating card style ── */
+html body .table > tbody > tr,
+html body table > tbody > tr {
+    background: rgba(255,255,255,0.02) !important;
+    border-radius: 10px !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+}
+
+html body .table > tbody > tr:hover,
+html body table > tbody > tr:hover {
+    background: rgba(16,185,129,0.06) !important;
+    box-shadow: 0 0 0 1px rgba(16,185,129,0.12), 0 4px 16px rgba(16,185,129,0.08) !important;
+    transform: scale(1.002) !important;
+}
+
+html body .table > tbody > tr > td,
+html body .table-bordered > tbody > tr > td,
+html body table > tbody > tr > td {
+    color: #CBD5E1 !important;
+    font-size: 13.5px !important;
+    border: none !important;
+    padding: 14px 18px !important;
+    vertical-align: middle !important;
+    background: transparent !important;
+    position: static !important;
+    transition: color 0.15s ease !important;
+}
+
+/* First and last cell rounded corners */
+html body .table > tbody > tr > td:first-child,
+html body table > tbody > tr > td:first-child {
+    border-radius: 10px 0 0 10px !important;
+}
+
+html body .table > tbody > tr > td:last-child,
+html body table > tbody > tr > td:last-child {
+    border-radius: 0 10px 10px 0 !important;
+}
+
+/* Hover state: brighten text */
+html body .table > tbody > tr:hover > td,
+html body table > tbody > tr:hover > td {
+    color: #F1F5F9 !important;
+}
+
+/* Striped rows */
+html body .table-striped > tbody > tr:nth-of-type(odd),
+html body .table-striped > tbody > tr:nth-of-type(odd) > td {
+    background: rgba(255,255,255,0.025) !important;
+}
+
+html body .table-bordered {
+    border: none !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* ════════════════════════════════════════════
+   BUTTONS — Refined micro-interactions
+   ════════════════════════════════════════════ */
+html body .btn,
+html body button.btn,
+html body a.btn,
+html body input.btn {
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    border-radius: 9px !important;
+    padding: 8px 16px !important;
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 1.5px solid transparent !important;
+    cursor: pointer !important;
+    outline: none !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+html body .btn:active { transform: scale(0.96) !important; }
+
+html body .btn-primary,
+html body .btn-success {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
+    color: #020617 !important;
+    font-weight: 700 !important;
+    border-color: rgba(16,185,129,0.3) !important;
+    box-shadow: 0 2px 8px rgba(16,185,129,0.2) !important;
+}
+html body .btn-primary:hover, html body .btn-primary:focus,
+html body .btn-success:hover {
+    background: linear-gradient(135deg, #34D399 0%, #10B981 100%) !important;
+    box-shadow: 0 4px 20px rgba(16,185,129,0.35) !important;
+    transform: translateY(-1px) !important;
+    color: #020617 !important;
+}
+
+html body .btn-default {
+    background: rgba(255,255,255,0.04) !important;
+    color: #8896AB !important;
+    border-color: rgba(255,255,255,0.08) !important;
+}
+html body .btn-default:hover, html body .btn-default:focus {
+    background: rgba(255,255,255,0.08) !important;
+    color: #F1F5F9 !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    transform: translateY(-1px) !important;
+}
+
+html body .btn-danger {
+    background: rgba(239,68,68,0.1) !important;
+    color: #F87171 !important;
+    border-color: rgba(239,68,68,0.2) !important;
+}
+html body .btn-danger:hover {
+    background: rgba(239,68,68,0.18) !important;
+    box-shadow: 0 4px 16px rgba(239,68,68,0.15) !important;
+    transform: translateY(-1px) !important;
+}
+
+html body .btn-info {
+    background: rgba(59,130,246,0.1) !important;
+    color: #60A5FA !important;
+    border-color: rgba(59,130,246,0.2) !important;
+}
+html body .btn-info:hover {
+    background: rgba(59,130,246,0.18) !important;
+    box-shadow: 0 4px 16px rgba(59,130,246,0.15) !important;
+    transform: translateY(-1px) !important;
+}
+
+html body .btn-warning {
+    background: rgba(245,158,11,0.1) !important;
+    color: #FBBF24 !important;
+    border-color: rgba(245,158,11,0.2) !important;
+}
+html body .btn-warning:hover {
+    background: rgba(245,158,11,0.18) !important;
+    box-shadow: 0 4px 16px rgba(245,158,11,0.15) !important;
+    transform: translateY(-1px) !important;
+}
+
+html body .btn-sm { padding: 5px 11px !important; font-size: 12px !important; border-radius: 7px !important; }
+html body .btn-xs { padding: 3px 8px !important; font-size: 11px !important; border-radius: 6px !important; }
+
+html body .btn-group .btn { border-radius: 0 !important; }
+html body .btn-group .btn:first-child { border-radius: 9px 0 0 9px !important; }
+html body .btn-group .btn:last-child { border-radius: 0 9px 9px 0 !important; }
+html body .btn-group .btn:only-child { border-radius: 9px !important; }
+
+/* Table action buttons — CRUD icon pills */
+html body td .btn-group,
+html body td center .btn-group {
+    display: flex !important;
+    gap: 6px !important;
+    justify-content: center !important;
+}
+
+/* Base style for ALL table action buttons */
+html body td .btn-group .btn,
+html body td .btn-sm,
+html body td a.btn {
+    padding: 7px 11px !important;
+    font-size: 13px !important;
+    border-radius: 8px !important;
+    border: 1px solid !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+}
+
+/* Show — Blue */
+html body td .btn-group .btn.crud-show,
+html body td .btn-group .btn-info {
+    background: rgba(59,130,246,0.1) !important;
+    color: #60A5FA !important;
+    border-color: rgba(59,130,246,0.2) !important;
+}
+html body td .btn-group .btn.crud-show:hover,
+html body td .btn-group .btn-info:hover {
+    background: rgba(59,130,246,0.22) !important;
+    color: #93C5FD !important;
+    border-color: rgba(59,130,246,0.35) !important;
+    box-shadow: 0 4px 14px rgba(59,130,246,0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Edit — Amber */
+html body td .btn-group .btn.crud-edit,
+html body td .btn-group .btn-warning {
+    background: rgba(245,158,11,0.1) !important;
+    color: #FBBF24 !important;
+    border-color: rgba(245,158,11,0.2) !important;
+}
+html body td .btn-group .btn.crud-edit:hover,
+html body td .btn-group .btn-warning:hover {
+    background: rgba(245,158,11,0.22) !important;
+    color: #FCD34D !important;
+    border-color: rgba(245,158,11,0.35) !important;
+    box-shadow: 0 4px 14px rgba(245,158,11,0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Delete — Red */
+html body td .btn-group .btn.crud-delete,
+html body td .btn-group .btn-danger {
+    background: rgba(239,68,68,0.1) !important;
+    color: #F87171 !important;
+    border-color: rgba(239,68,68,0.2) !important;
+}
+html body td .btn-group .btn.crud-delete:hover,
+html body td .btn-group .btn-danger:hover {
+    background: rgba(239,68,68,0.22) !important;
+    color: #FCA5A5 !important;
+    border-color: rgba(239,68,68,0.35) !important;
+    box-shadow: 0 4px 14px rgba(239,68,68,0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* ════════════════════════════════════════════
+   FORMS
+   ════════════════════════════════════════════ */
+html body .form-control,
+html body input.form-control,
+html body select.form-control,
+html body textarea.form-control,
+html body input[type="text"],
+html body input[type="password"],
+html body input[type="email"],
+html body input[type="number"],
+html body input[type="search"],
+html body input[type="url"],
+html body input[type="tel"],
+html body textarea,
+html body select {
+    background: rgba(255,255,255,0.035) !important;
+    color: #E2E8F0 !important;
+    border: 1.5px solid rgba(255,255,255,0.07) !important;
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: none !important;
+    outline: none !important;
+    height: auto !important;
+}
+
+html body .form-control:focus,
+html body input:focus,
+html body select:focus,
+html body textarea:focus {
+    border-color: #10B981 !important;
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.1) !important;
+    background: rgba(255,255,255,0.05) !important;
+}
+
+html body .form-control::placeholder,
+html body input::placeholder { color: #475569 !important; }
+
+html body select.form-control {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    padding-right: 36px !important;
+}
+
+html body label, html body .control-label {
+    color: #8896AB !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 8px !important;
+}
+
+html body .help-block { color: #475569 !important; font-size: 12px !important; }
+
+html body .input-group-addon {
+    background: rgba(255,255,255,0.04) !important;
+    border-color: rgba(255,255,255,0.07) !important;
+    color: #64748B !important;
+}
+
+/* Select2 */
+html body .select2-container .select2-choice,
+html body .select2-container--default .select2-selection--single,
+html body .select2-container .select2-selection {
+    background: rgba(255,255,255,0.035) !important;
+    border: 1.5px solid rgba(255,255,255,0.07) !important;
+    border-radius: 10px !important;
+    color: #E2E8F0 !important;
+    height: 38px !important;
+    line-height: 38px !important;
+}
+
+html body .select2-drop, html body .select2-dropdown {
+    background: rgba(10,14,26,0.97) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5) !important;
+}
+
+html body .select2-results .select2-result-label,
+html body .select2-results__option { color: #8896AB !important; padding: 10px 14px !important; }
+
+html body .select2-results .select2-highlighted,
+html body .select2-results__option--highlighted,
+html body .select2-container--default .select2-results__option--highlighted {
+    background: rgba(16,185,129,0.1) !important; color: #10B981 !important;
+}
+
+html body .select2-search input {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    color: #E2E8F0 !important;
+    border-radius: 8px !important;
+}
+
+/* ════════════════════════════════════════════
+   PAGINATION — Pill buttons
+   ════════════════════════════════════════════ */
+html body .pagination { display: flex !important; gap: 4px !important; }
+
+html body .pagination > li > a,
+html body .pagination > li > span {
+    background: rgba(255,255,255,0.03) !important;
+    color: #8896AB !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    border-radius: 9px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 7px 13px !important;
+    transition: all 0.15s ease !important;
+    margin: 0 !important;
+}
+
+html body .pagination > li > a:hover {
+    background: rgba(16,185,129,0.08) !important;
+    color: #10B981 !important;
+    border-color: rgba(16,185,129,0.15) !important;
+}
+
+html body .pagination > .active > a,
+html body .pagination > .active > span {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
+    border-color: #10B981 !important;
+    color: #020617 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 8px rgba(16,185,129,0.25) !important;
+}
+
+html body .pagination > .disabled > a,
+html body .pagination > .disabled > span {
+    background: rgba(255,255,255,0.015) !important;
+    color: #334155 !important;
+    border-color: rgba(255,255,255,0.03) !important;
+}
+
+/* ════════════════════════════════════════════
+   BREADCRUMBS
+   ════════════════════════════════════════════ */
+html body .breadcrumb {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.04) !important;
+    border-radius: 10px !important;
+    padding: 10px 16px !important;
+}
+html body .breadcrumb > li + li::before { color: #334155 !important; content: "›" !important; font-size: 15px !important; }
+html body .breadcrumb > .active { color: #64748B !important; }
+html body .breadcrumb a { color: #10B981 !important; }
+
+/* ════════════════════════════════════════════
+   LABELS & BADGES
+   ════════════════════════════════════════════ */
+html body .label, html body span.label {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 600 !important; font-size: 11px !important;
+    padding: 4px 10px !important; border-radius: 7px !important;
+}
+html body .label-default { background: rgba(255,255,255,0.05) !important; color: #8896AB !important; }
+html body .label-success { background: rgba(16,185,129,0.1) !important; color: #34D399 !important; }
+html body .label-primary { background: rgba(59,130,246,0.1) !important; color: #60A5FA !important; }
+html body .label-danger  { background: rgba(239,68,68,0.1) !important; color: #F87171 !important; }
+html body .label-warning { background: rgba(245,158,11,0.1) !important; color: #FBBF24 !important; }
+html body .label-info    { background: rgba(59,130,246,0.1) !important; color: #60A5FA !important; }
+
+html body .badge, html body span.badge {
+    background: #10B981 !important; color: #020617 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 700 !important; font-size: 11px !important;
+    padding: 3px 9px !important; border-radius: 999px !important;
+}
+
+/* ════════════════════════════════════════════
+   ALERTS
+   ════════════════════════════════════════════ */
+html body .alert {
+    border-radius: 12px !important;
+    font-weight: 500 !important;
+    padding: 14px 20px !important;
+}
+html body .alert-success { background: rgba(16,185,129,0.07) !important; border: 1px solid rgba(16,185,129,0.12) !important; color: #34D399 !important; }
+html body .alert-danger  { background: rgba(239,68,68,0.07) !important; border: 1px solid rgba(239,68,68,0.12) !important; color: #F87171 !important; }
+html body .alert-warning { background: rgba(245,158,11,0.07) !important; border: 1px solid rgba(245,158,11,0.12) !important; color: #FBBF24 !important; }
+html body .alert-info    { background: rgba(59,130,246,0.07) !important; border: 1px solid rgba(59,130,246,0.12) !important; color: #60A5FA !important; }
+html body .alert .close { color: inherit !important; opacity: 0.6 !important; text-shadow: none !important; }
+
+/* ════════════════════════════════════════════
+   MODALS
+   ════════════════════════════════════════════ */
+html body .modal-backdrop, html body .modal-backdrop.in {
+    background: rgba(0,0,0,0.7) !important;
+    backdrop-filter: blur(6px) !important;
+}
+
+html body .modal-content {
+    background: rgba(10,14,26,0.97) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
+    overflow: hidden !important;
+}
+
+html body .modal-header {
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    padding: 20px 24px !important;
+    background: rgba(255,255,255,0.02) !important;
+}
+html body .modal-header .close { color: #64748B !important; text-shadow: none !important; opacity: 0.7 !important; }
+html body .modal-title { font-weight: 700 !important; font-size: 17px !important; color: #F1F5F9 !important; }
+html body .modal-body { padding: 24px !important; color: #CBD5E1 !important; }
+html body .modal-footer { border-top: 1px solid rgba(255,255,255,0.05) !important; padding: 16px 24px !important; background: rgba(255,255,255,0.02) !important; }
+
+/* ════════════════════════════════════════════
+   WELL / JUMBOTRON
+   ════════════════════════════════════════════ */
+html body .well {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    border-radius: 14px !important;
+    box-shadow: none !important;
+    color: #CBD5E1 !important;
+}
+
+html body .jumbotron {
+    background: linear-gradient(160deg, rgba(14,19,33,0.8), rgba(10,14,26,0.9)) !important;
+    color: #CBD5E1 !important;
+    border-radius: 18px !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+/* ════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════ */
+html body footer, html body .footer,
+html body .img-rounded.nav-fixed-bottom {
+    background: rgba(6,9,15,0.92) !important;
+    border-top: 1px solid rgba(255,255,255,0.04) !important;
+    color: #475569 !important;
+    border-radius: 0 !important;
+}
+html body footer a { color: #10B981 !important; }
+html body footer p { color: #475569 !important; }
+
+/* ════════════════════════════════════════════
+   LINKS
+   ════════════════════════════════════════════ */
+html body a { color: #10B981 !important; transition: color 0.15s ease !important; text-decoration: none !important; }
+html body a:hover { color: #34D399 !important; text-decoration: none !important; }
+
+/* ════════════════════════════════════════════
+   LIST GROUPS
+   ════════════════════════════════════════════ */
+html body .list-group-item {
+    background: rgba(255,255,255,0.025) !important;
+    border-color: rgba(255,255,255,0.04) !important;
+    color: #CBD5E1 !important;
+    transition: all 0.15s ease !important;
+}
+html body .list-group-item:hover { background: rgba(16,185,129,0.05) !important; }
+
+/* ════════════════════════════════════════════
+   MISC
+   ════════════════════════════════════════════ */
+html body hr { border-color: rgba(255,255,255,0.05) !important; }
+html body pre, html body code { background: rgba(255,255,255,0.04) !important; color: #10B981 !important; border: 1px solid rgba(255,255,255,0.05) !important; border-radius: 7px !important; }
+html body dl dt { color: #64748B !important; font-weight: 600 !important; }
+html body dl dd { color: #CBD5E1 !important; }
+html body .img-circle, html body .img-thumbnail { border-color: rgba(255,255,255,0.06) !important; background: rgba(255,255,255,0.03) !important; }
+
+html body .filters {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    margin-bottom: 16px !important;
+}
+
+/* LOGIN */
+html body .login-container, html body #loginbox {
+    background: linear-gradient(160deg, rgba(14,19,33,0.8), rgba(10,14,26,0.92)) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4) !important;
+}
+
+/* ════════════════════════════════════════════
+   SCROLLBAR
+   ════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px !important; height: 6px !important; }
+::-webkit-scrollbar-track { background: transparent !important; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06) !important; border-radius: 3px !important; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12) !important; }
+html body { scrollbar-width: thin !important; scrollbar-color: rgba(255,255,255,0.06) transparent !important; }
+/* ════════════════════════════════════════════
+   ICONS — Fix FontAwesome rendering
+   ════════════════════════════════════════════ */
+
+/* Force ALL fa icons to use FA6 CDN font-family — ultra specific */
+html body .fa,
+html body .fas,
+html body .far,
+html body .fab,
+html body .fa-solid,
+html body .fa-regular,
+html body .fa-brands,
+html body i.fa,
+html body i.fas,
+html body i.far,
+html body i.fa-solid,
+html body i.fa-regular,
+html body a i.fa,
+html body a.btn i.fa,
+html body .btn i.fa,
+html body .btn-group i.fa,
+html body td i.fa,
+html body td a i.fa,
+html body td .btn-group i.fa,
+html body td .btn-group a i.fa,
+html body td .btn-group .btn i.fa {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    font-style: normal !important;
+    font-variant: normal !important;
+    text-rendering: auto !important;
+    line-height: 1 !important;
+    color: inherit !important;
+    display: inline-block !important;
+}
+
+/* ── Fix specific icons via Unicode content ── */
+
+/* Plus (+) */
+html body i.fa.fa-plus::before,
+html body i.fa-solid.fa-plus::before { content: "\f067" !important; }
+
+/* Eye (Show) */
+html body i.fa.fa-search::before,
+html body i.fa-solid.fa-eye::before,
+html body i.fa-solid.fa-magnifying-glass::before { content: "\f06e" !important; }
+
+/* Edit (Pencil) */
+html body i.fa.fa-edit::before,
+html body i.fa.fa-pencil::before,
+html body i.fa-solid.fa-pen-to-square::before { content: "\f044" !important; }
+
+/* Trash (Delete) */
+html body i.fa.fa-trash::before,
+html body i.fa-solid.fa-trash-can::before { content: "\f2ed" !important; }
+
+/* Arrow left (Back) */
+html body i.fa.fa-arrow-left::before,
+html body i.fa-solid.fa-arrow-left::before { content: "\f060" !important; }
+
+/* Save (Floppy disk) */
+html body i.fa.fa-save::before,
+html body i.fa-regular.fa-floppy-disk::before { content: "\f0c7" !important; }
+
+/* Search */
+html body i.fa.fa-search::before { content: "\f06e" !important; }
+
+/* Chevrons (sort) */
+html body i.fa.fa-chevron-up::before,
+html body i.fa-solid.fa-chevron-up::before { content: "\f077" !important; }
+
+html body i.fa.fa-chevron-down::before,
+html body i.fa-solid.fa-chevron-down::before { content: "\f078" !important; }
+
+html body i.fa.fa-arrows-v::before { content: "\f07d" !important; }
+
+/* Caret */
+html body i.fa.fa-caret-down::before { content: "\f0d7" !important; }
+
+/* Check */
+html body i.fa.fa-check::before { content: "\f00c" !important; }
+
+/* Times / Close */
+html body i.fa.fa-times::before { content: "\f00d" !important; }
+
+/* Bars (menu) */
+html body i.fa.fa-bars::before { content: "\f0c9" !important; }
+
+/* Lock */
+html body i.fa.fa-lock::before { content: "\f023" !important; }
+
+/* User */
+html body i.fa.fa-user::before { content: "\f007" !important; }
+
+/* Sign out */
+html body i.fa.fa-sign-out::before { content: "\f2f5" !important; }
+
+/* List */
+html body i.fa.fa-list::before { content: "\f03a" !important; }
+
+/* Key */
+html body i.fa.fa-key::before { content: "\f084" !important; }
+
+/* Calendar */
+html body i.fa.fa-calendar::before { content: "\f133" !important; }
+
+/* ════════════════════════════════════════════
+   FAB ACTION BUTTONS — +Add, Show, Edit, Delete
+   ════════════════════════════════════════════ */
+
+/* ── "+" Add new record button ── */
+html body .btn.btn-sm.btn-primary,
+html body a.btn.btn-sm.btn-primary,
+html body .btn-primary.btn-sm {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
+    color: #020617 !important;
+    font-weight: 800 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 8px 14px !important;
+    box-shadow: 0 2px 10px rgba(16,185,129,0.3) !important;
+    font-size: 13px !important;
+}
+
+html body .btn.btn-sm.btn-primary:hover,
+html body a.btn.btn-sm.btn-primary:hover {
+    background: linear-gradient(135deg, #34D399 0%, #10B981 100%) !important;
+    box-shadow: 0 6px 24px rgba(16,185,129,0.4) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    color: #020617 !important;
+}
+
+
+/* ════════════════════════════════════════════
+   TOOLBAR / TOP ACTION BAR
+   ════════════════════════════════════════════ */
+html body .well.well-sm,
+html body .btn-toolbar {
+    background: rgba(255,255,255,0.02) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    margin-bottom: 16px !important;
+}
+
+/* ════════════════════════════════════════════
+   CHECKBOXES & RADIO — Custom dark style
+   ════════════════════════════════════════════ */
+html body input[type="checkbox"],
+html body input[type="radio"] {
+    accent-color: #10B981 !important;
+    width: 16px !important;
+    height: 16px !important;
+    cursor: pointer !important;
+}
+
+/* ════════════════════════════════════════════
+   TEXT COLORS — Override Bootstrap .text-*
+   ════════════════════════════════════════════ */
+html body .text-muted { color: #64748B !important; }
+html body .text-primary { color: #60A5FA !important; }
+html body .text-success { color: #34D399 !important; }
+html body .text-info { color: #60A5FA !important; }
+html body .text-warning { color: #FBBF24 !important; }
+html body .text-danger { color: #F87171 !important; }
+
+/* ════════════════════════════════════════════
+   BACKGROUND COLORS — Override Bootstrap .bg-*
+   ════════════════════════════════════════════ */
+html body .bg-primary { background-color: rgba(59,130,246,0.12) !important; }
+html body .bg-success { background-color: rgba(16,185,129,0.12) !important; }
+html body .bg-info { background-color: rgba(59,130,246,0.08) !important; }
+html body .bg-warning { background-color: rgba(245,158,11,0.12) !important; }
+html body .bg-danger { background-color: rgba(239,68,68,0.12) !important; }
+
+/* ════════════════════════════════════════════
+   SEARCH BAR / FILTER BAR in list views
+   ════════════════════════════════════════════ */
+html body .search-row,
+html body .search-row input,
+html body .filters .form-control {
+    background: rgba(255,255,255,0.04) !important;
+    border-color: rgba(255,255,255,0.07) !important;
+    color: #E2E8F0 !important;
+}
+
+html body .search-row .btn,
+html body .filters .btn {
+    background: linear-gradient(135deg, #10B981, #059669) !important;
+    color: #020617 !important;
+    font-weight: 700 !important;
+    border: none !important;
+}
+
+html body .search-row .btn:hover,
+html body .filters .btn:hover {
+    background: linear-gradient(135deg, #34D399, #10B981) !important;
+    box-shadow: 0 4px 16px rgba(16,185,129,0.3) !important;
+}
+
+/* ════════════════════════════════════════════
+   PROGRESS BARS
+   ════════════════════════════════════════════ */
+html body .progress {
+    background: rgba(255,255,255,0.06) !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    height: 8px !important;
+}
+
+html body .progress-bar {
+    background: linear-gradient(90deg, #10B981, #34D399) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 0 12px rgba(16,185,129,0.3) !important;
+}
+
+/* ════════════════════════════════════════════
+   TABS — If used in FAB detail views
+   ════════════════════════════════════════════ */
+html body .nav-tabs {
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+html body .nav-tabs > li > a {
+    color: #64748B !important;
+    border: none !important;
+    border-radius: 8px 8px 0 0 !important;
+    padding: 10px 18px !important;
+    transition: all 0.15s ease !important;
+    margin-right: 2px !important;
+    background: transparent !important;
+}
+
+html body .nav-tabs > li > a:hover {
+    color: #F1F5F9 !important;
+    background: rgba(255,255,255,0.04) !important;
+    border: none !important;
+}
+
+html body .nav-tabs > li.active > a,
+html body .nav-tabs > li.active > a:hover,
+html body .nav-tabs > li.active > a:focus {
+    color: #10B981 !important;
+    background: rgba(16,185,129,0.08) !important;
+    border: none !important;
+    border-bottom: 2px solid #10B981 !important;
+}
+
+/* ════════════════════════════════════════════
+   TOOLTIP
+   ════════════════════════════════════════════ */
+html body .tooltip-inner {
+    background: rgba(10,14,26,0.95) !important;
+    color: #E2E8F0 !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4) !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+html body .tooltip.top .tooltip-arrow { border-top-color: rgba(10,14,26,0.95) !important; }
+html body .tooltip.bottom .tooltip-arrow { border-bottom-color: rgba(10,14,26,0.95) !important; }
+
+/* ════════════════════════════════════════════
+   POPOVER
+   ════════════════════════════════════════════ */
+html body .popover {
+    background: rgba(10,14,26,0.97) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5) !important;
+    color: #CBD5E1 !important;
+}
+
+html body .popover-title {
+    background: rgba(255,255,255,0.03) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    color: #F1F5F9 !important;
+    font-weight: 700 !important;
+    border-radius: 14px 14px 0 0 !important;
+}
+
+/* ════════════════════════════════════════════
+   SHOW VIEW — Detail page dl/dt/dd
+   ════════════════════════════════════════════ */
+html body .dl-horizontal dt {
+    color: #64748B !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+html body .dl-horizontal dd {
+    color: #F1F5F9 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    html body .navbar-brand { font-size: 15px !important; padding: 14px 16px !important; }
+    html body .page-header h1 { font-size: 20px !important; }
+    html body .panel-body { padding: 14px !important; }
+    html body .table > thead > tr > th { padding: 8px 12px !important; }
+    html body .table > tbody > tr > td { padding: 10px 12px !important; font-size: 12.5px !important; }
+    html body .dropdown-menu { border-radius: 0 !important; margin: 0 !important; }
+}
