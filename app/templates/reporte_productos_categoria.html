@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reporte · Productos por Categoría — SHOPPING PC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:           #F1F5F4;
+            --surface:      #FFFFFF;
+            --ink:          #0F172A;
+            --ink-soft:     #475569;
+            --accent:       #15803D;
+            --accent-bright:#16A34A;
+            --accent-soft:  #DCFCE7;
+            --line:         #E2E8F0;
+            --radius:       14px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 100% 0%, rgba(21,128,61,0.07), transparent 45%);
+        }
+        .shell { max-width: 1020px; margin: 0 auto; padding: 48px 24px 80px; }
+
+        /* ── Marca ── */
+        .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 36px; }
+        .brand-mark {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 800; font-size: 13px; letter-spacing: -0.5px;
+        }
+        .brand-name { font-weight: 700; font-size: 15px; color: var(--ink); letter-spacing: 0.1px; }
+        .brand-name span { color: var(--accent); }
+
+        /* ── Cabecera de página ── */
+        .page-head { margin-bottom: 32px; }
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 1.4px;
+            color: var(--accent); display: block; margin-bottom: 10px;
+        }
+        h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.7px; margin-bottom: 8px; }
+        .subtitle { color: var(--ink-soft); font-size: 15px; max-width: 560px; line-height: 1.6; }
+
+        /* ── Panel ── */
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 10px 20px -14px rgba(15,23,42,.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .panel-head {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--line);
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        }
+        .panel-head h2 { font-size: 14.5px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .panel-body { padding: 24px; }
+
+        /* ── Formulario ── */
+        label { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); display: block; margin-bottom: 7px; }
+        select {
+            width: 100%; font-family: inherit; font-size: 14px; padding: 10px 14px;
+            border-radius: 10px; border: 1.5px solid var(--line);
+            background: #FAFBFA; color: var(--ink);
+            transition: border-color .15s;
+        }
+        select:focus { outline: none; border-color: var(--accent-bright); background: #fff; }
+        .field-row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+        .field-row > div:first-child { flex: 1; min-width: 220px; }
+        .btn {
+            font-family: inherit; font-weight: 600; font-size: 13.5px;
+            padding: 10px 22px; border-radius: 10px; border: none;
+            background: var(--ink); color: #fff; cursor: pointer;
+            transition: transform .12s, box-shadow .12s;
+            white-space: nowrap;
+        }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 18px -8px rgba(15,23,42,.45); }
+
+        /* ── Chip contador ── */
+        .chip {
+            font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+            background: var(--accent-soft); color: var(--accent);
+            padding: 4px 11px; border-radius: 999px; white-space: nowrap;
+        }
+
+        /* ── Tabla ── */
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        thead th {
+            text-align: left; font-size: 11px; text-transform: uppercase;
+            letter-spacing: 0.7px; color: var(--ink-soft); font-weight: 700;
+            padding: 0 20px 11px; border-bottom: 1.5px solid var(--line);
+        }
+        thead th:first-child { padding-left: 24px; }
+        tbody td { padding: 13px 20px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+        tbody td:first-child { padding-left: 24px; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background: #FAFBFA; }
+        .fw { font-weight: 600; }
+        .muted { color: var(--ink-soft); }
+        .pill-cat {
+            display: inline-block; font-size: 11.5px; font-weight: 600;
+            padding: 3px 10px; border-radius: 999px;
+            background: var(--accent-soft); color: var(--accent);
+        }
+        .price { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+        .stock-ok  { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+        .stock-low { color: #B45309;       font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+        .empty { padding: 48px 24px; text-align: center; color: var(--ink-soft); font-size: 14px; }
+        .empty .icon { font-size: 28px; display: block; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="shell">
+
+    <div class="brand-row">
+        <div class="brand-mark">SP</div>
+        <div class="brand-name">SHOPPING<span>PC</span> &nbsp;·&nbsp; Panel de Reportes</div>
+    </div>
+
+    <div class="page-head">
+        <span class="eyebrow">Reporte 01 · Catálogo</span>
+        <h1>Productos por categoría</h1>
+        <p class="subtitle">
+            Filtra el catálogo de laptops, computadoras, impresoras y accesorios
+            por categoría para revisar precio y stock disponible.
+        </p>
+    </div>
+
+    <!-- Filtro -->
+    <div class="panel">
+        <div class="panel-head">
+            <h2>🗂️ Filtro de categoría</h2>
+        </div>
+        <div class="panel-body">
+            <form method="POST">
+                <div class="field-row">
+                    <div>
+                        <label for="cat_id">Categoría de producto</label>
+                        <select id="cat_id" name="cat_id">
+                            <option value="" {% if not seleccionado %}selected{% endif %}>
+                                — Todas las categorías —
+                            </option>
+                            {% for cat in categorias %}
+                            <option value="{{ cat.id }}"
+                                {% if seleccionado == cat.id|string %}selected{% endif %}>
+                                {{ cat.nombre }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button class="btn" type="submit">Aplicar filtro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Resultados -->
+    <div class="panel">
+        <div class="panel-head">
+            <h2>💻 Productos encontrados</h2>
+            <span class="chip">{{ productos|length }} resultado{{ 's' if productos|length != 1 else '' }}</span>
+        </div>
+
+        {% if productos %}
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Modelo</th>
+                        <th>Marca</th>
+                        <th>Categoría</th>
+                        <th>Precio (Bs)</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in productos %}
+                    <tr>
+                        <td class="fw">{{ p.nombre }}</td>
+                        <td class="muted">{{ p.modelo or '—' }}</td>
+                        <td>{{ p.marca or '—' }}</td>
+                        <td><span class="pill-cat">{{ p.categoria }}</span></td>
+                        <td class="price">{{ "%.2f"|format(p.precio) }}</td>
+                        <td class="{{ 'stock-low' if p.stock < 5 else 'stock-ok' }}">{{ p.stock }} u.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty">
+            <span class="icon">📭</span>
+            No se encontraron productos para esta categoría.
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+</body>
+</html>
