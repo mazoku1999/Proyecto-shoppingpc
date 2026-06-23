@@ -36,15 +36,44 @@ class ReporteVentasClienteView(BaseView):
         )
 
 
-class VentasPorClienteChartView(GroupByChartView):
-    """Gráfica nativa de FAB: total vendido agrupado por cliente."""
-    datamodel = SQLAInterface(Venta)
-    chart_title = "Total de ventas por cliente"
-    label_columns = {"cliente": "Cliente"}
-    chart_type = "BarChart"
-    definitions = [
-        {
-            "group": "cliente.nombre",
-            "series": [(aggregate_sum, "total")],
+class VentasPorClienteChartView(BaseView):
+    """Gráfica personalizada con Chart.js: total vendido agrupado por cliente."""
+    
+    @expose("/")
+    @has_access
+    def list(self):
+        sql = """
+        SELECT c.nombre AS cliente, COALESCE(SUM(v.total), 0) AS total_ventas
+        FROM cliente c
+        INNER JOIN venta v ON v.cliente_id = c.id
+        GROUP BY c.id, c.nombre
+        ORDER BY total_ventas DESC
+        """
+        data = db.session.execute(db.text(sql)).fetchall()
+        
+        total_recaudado = sum(item[1] for item in data)
+        max_item = max(data, key=lambda x: x[1]) if data else (None, 0)
+        min_item = min(data, key=lambda x: x[1]) if data else (None, 0)
+        promedio_cliente = total_recaudado / len(data) if data else 0
+        
+        stats = {
+            "total_recaudado": float(total_recaudado),
+            "max_nombre": max_item[0],
+            "max_monto": float(max_item[1]),
+            "max_pct": round((max_item[1] / total_recaudado * 100), 1) if total_recaudado > 0 else 0,
+            "min_nombre": min_item[0],
+            "min_monto": float(min_item[1]),
+            "min_pct": round((min_item[1] / total_recaudado * 100), 1) if total_recaudado > 0 else 0,
+            "promedio": round(promedio_cliente, 2),
+            "cantidad_clientes": len(data),
         }
-    ]
+        
+        labels = [item[0] for item in data]
+        values = [float(item[1]) for item in data]
+        
+        return self.render_template(
+            "chart_ventas_cliente.html",
+            labels=labels,
+            values=values,
+            stats=stats
+        )
