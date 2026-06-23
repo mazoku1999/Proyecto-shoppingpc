@@ -13,7 +13,7 @@ SECRET_KEY = "123456789shoppingpc0987"
 
 # The SQLAlchemy connection string.
 # SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, "app.db")
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:mazoku1?@localhost:3306/shoppingpc'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:incos2024@localhost:3306/shoppingpc'
 # SQLALCHEMY_DATABASE_URI = 'postgresql://root:password@localhost/myapp'
 
 # Flask-WTF flag for CSRF
