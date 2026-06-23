@@ -1,54 +1,50 @@
 {% extends "appbuilder/base.html" %}
 
 {% block content %}
-<div class="container" style="max-width: 1020px; margin-top: 24px; margin-bottom: 48px; font-family: 'Inter', sans-serif;">
+<div class="container" style="max-width: 1080px; margin-top: 28px; margin-bottom: 48px; font-family: 'Inter', sans-serif;">
     <!-- Head -->
-    <div style="margin-bottom: 24px;">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #0D9488; font-weight: 700; display: inline-block; padding: 6px 16px; background: #CCFBF1; border: 1px solid #99F6E4; border-radius: 999px; margin-bottom: 14px; box-shadow: 0 2px 4px rgba(13,148,136,0.06);">
+    <div style="margin-bottom: 28px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.6px; color: #14B8A6; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(20,184,166,0.1); border: 1px solid rgba(20,184,166,0.15); border-radius: 999px; margin-bottom: 16px;">
             📊 Reporte Gráfico 03
         </span>
-        <h1 style="font-size: 28px; font-weight: 800; color: #0F172A; letter-spacing: -0.6px; margin: 0 0 6px 0;">
+        <h1 style="font-size: 32px; font-weight: 800; color: #F1F5F9; letter-spacing: -0.8px; margin: 0 0 8px 0;">
             Stock de Inventario por Categoría
         </h1>
-        <p style="color: #475569; font-size: 14px; margin: 0;">
-            Análisis de existencias en almacén por categoría de producto. Permite identificar la concentración de inventario físico y su porcentaje del total.
+        <p style="color: #94A3B8; font-size: 15px; margin: 0; line-height: 1.7;">
+            Análisis de existencias en almacén por categoría de producto para identificar concentración de inventario.
         </p>
     </div>
 
     <!-- Chart Panel -->
-    <div style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); padding: 32px; margin-bottom: 24px;">
-        <h3 style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0 0 20px 0; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px;">
+    <div style="background: #1A1F2E; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); padding: 32px; margin-bottom: 24px;">
+        <h3 style="font-size: 14px; font-weight: 700; color: #F1F5F9; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 10px;">
             Unidades en Stock y Porcentaje de Inventario
         </h3>
-        
-        <!-- Canvas wrapper with some padding for datalabels -->
         <div style="position: relative; width: 100%; height: 350px; padding-top: 30px; box-sizing: border-box;">
             <canvas id="stockChart"></canvas>
         </div>
     </div>
 
     <!-- Data Interpretation Panel -->
-    <div style="background: #F8FAFC; border-left: 4px solid #0D9488; border-radius: 8px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-        <h4 style="font-size: 13px; font-weight: 700; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+    <div style="background: #1A1F2E; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid #14B8A6; border-radius: 12px; padding: 22px 26px;">
+        <h4 style="font-size: 12px; font-weight: 700; color: #F1F5F9; text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 14px 0; display: flex; align-items: center; gap: 8px;">
             <span>📊</span> Interpretación de Datos (Análisis de Inventarios)
         </h4>
-        <div style="font-size: 12px; line-height: 1.6; color: #334155;">
-            <p style="margin-bottom: 8px;">
-                El inventario físico global en almacén registra actualmente un total acumulado de <strong>{{ stats.total }} unidades</strong> disponibles.
-                La categoría de mayor peso en el stock físico corresponde a <strong>{{ stats.max_nombre }}</strong>, con un total de <strong>{{ stats.max_cantidad }} unidades</strong>, representando el <strong>{{ stats.max_pct }}%</strong> de la capacidad total ocupada en bodega. Esto denota un fuerte enfoque logístico en esta línea de productos, con una alta disponibilidad para cubrir ventas inmediatas.
+        <div style="font-size: 13px; line-height: 1.7; color: #94A3B8;">
+            <p style="margin-bottom: 10px;">
+                Inventario total: <strong style="color: #F1F5F9;">{{ stats.total }} unidades</strong>.
+                Mayor stock: <strong style="color: #14B8A6;">{{ stats.max_nombre }}</strong> con <strong style="color: #14B8A6;">{{ stats.max_cantidad }} unidades</strong> ({{ stats.max_pct }}%).
             </p>
-            <p style="margin-bottom: 8px;">
-                Por otro lado, la menor disponibilidad física de inventario se registra en la categoría de <strong>{{ stats.min_nombre }}</strong> con solo <strong>{{ stats.min_cantidad }} unidades</strong> (equivalente al <strong>{{ stats.min_pct }}%</strong> del total general). 
-                Es crucial revisar los tiempos de reposición de esta categoría para mitigar cualquier riesgo de quiebre de stock que impacte negativamente en los compromisos comerciales adquiridos.
+            <p style="margin-bottom: 10px;">
+                Menor disponibilidad: <strong style="color: #F59E0B;">{{ stats.min_nombre }}</strong> con solo <strong style="color: #F59E0B;">{{ stats.min_cantidad }} unidades</strong> ({{ stats.min_pct }}%).
             </p>
-            <p style="margin: 0; font-weight: 600; color: #1E293B;">
-                💡 Recomendación Operativa: Programar una alerta de reabastecimiento urgente para la categoría de menor stock para evitar pérdida de ventas potenciales, mientras se monitorea la velocidad de salida de la categoría dominante para optimizar el espacio en bodega.
+            <p style="margin: 0; font-weight: 600; color: #F1F5F9;">
+                💡 Recomendación: Programar reabastecimiento urgente para categorías de menor stock y monitorear la velocidad de salida de la categoría dominante.
             </p>
         </div>
     </div>
 </div>
 
-<!-- Load Chart.js and DataLabels Plugin -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
@@ -58,45 +54,31 @@
         var values = {{ values|tojson }};
         var total = {{ stats.total }};
 
-        // Register the DataLabels plugin
         Chart.register(ChartDataLabels);
+        Chart.defaults.color = '#94A3B8';
+        Chart.defaults.font.family = "'Inter', sans-serif";
 
-        // Initialize Vertical Column Chart
         var ctx = document.getElementById('stockChart').getContext('2d');
-        var stockChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Unidades en Stock',
                     data: values,
-                    backgroundColor: labels.map(function(label, index) {
-                        var palette = [
-                            'rgba(249, 115, 22, 0.85)',  // Orange
-                            'rgba(20, 184, 166, 0.85)',  // Teal
-                            'rgba(99, 102, 241, 0.85)',  // Indigo
-                            'rgba(239, 68, 68, 0.85)',   // Coral/Red
-                            'rgba(16, 185, 129, 0.85)',  // Emerald
-                            'rgba(236, 72, 153, 0.85)',  // Pink
-                            'rgba(59, 130, 246, 0.85)',  // Blue
-                            'rgba(245, 158, 11, 0.85)'   // Amber
-                        ];
-                        return palette[index % palette.length];
+                    backgroundColor: labels.map(function(l, i) {
+                        var p = ['rgba(249,115,22,0.8)', 'rgba(20,184,166,0.8)', 'rgba(99,102,241,0.8)',
+                                 'rgba(239,68,68,0.8)', 'rgba(16,185,129,0.8)', 'rgba(236,72,153,0.8)',
+                                 'rgba(59,130,246,0.8)', 'rgba(245,158,11,0.8)'];
+                        return p[i % p.length];
                     }),
-                    hoverBackgroundColor: labels.map(function(label, index) {
-                        var palette = [
-                            'rgba(249, 115, 22, 1)',
-                            'rgba(20, 184, 166, 1)',
-                            'rgba(99, 102, 241, 1)',
-                            'rgba(239, 68, 68, 1)',
-                            'rgba(16, 185, 129, 1)',
-                            'rgba(236, 72, 153, 1)',
-                            'rgba(59, 130, 246, 1)',
-                            'rgba(245, 158, 11, 1)'
-                        ];
-                        return palette[index % palette.length];
+                    hoverBackgroundColor: labels.map(function(l, i) {
+                        var p = ['rgba(249,115,22,1)', 'rgba(20,184,166,1)', 'rgba(99,102,241,1)',
+                                 'rgba(239,68,68,1)', 'rgba(16,185,129,1)', 'rgba(236,72,153,1)',
+                                 'rgba(59,130,246,1)', 'rgba(245,158,11,1)'];
+                        return p[i % p.length];
                     }),
-                    borderRadius: 6,
+                    borderRadius: 8,
                     borderWidth: 0,
                     barThickness: 48
                 }]
@@ -106,49 +88,39 @@
                 maintainAspectRatio: false,
                 scales: {
                     x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: { family: 'Inter, sans-serif', weight: 'bold', size: 11 }
-                        }
+                        grid: { display: false },
+                        ticks: { font: { weight: 'bold', size: 11 }, color: '#F1F5F9' }
                     },
                     y: {
-                        grace: '20%', // Adds a 20% empty buffer space on the top of the max value
-                        grid: {
-                            color: '#F1F5F9'
-                        },
-                        ticks: {
-                            font: { family: 'Inter, sans-serif', size: 11 },
-                            callback: function(value) { return value + ' u.'; }
-                        }
+                        grace: '20%',
+                        grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false },
+                        ticks: { font: { size: 11 }, callback: function(v) { return v + ' u.'; } }
                     }
                 },
                 plugins: {
-                    legend: {
-                        display: false // Hide legend since there is only one dataset
-                    },
+                    legend: { display: false },
                     datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        offset: 4,
-                        formatter: function(value, context) {
+                        anchor: 'end', align: 'top', offset: 4,
+                        formatter: function(value) {
                             var pct = total > 0 ? ((value / total) * 100).toFixed(1) + "%" : "0%";
                             return value + " u. (" + pct + ")";
                         },
-                        font: {
-                            family: 'Inter, sans-serif',
-                            weight: '600',
-                            size: 10
-                        },
-                        color: '#1E293B'
+                        font: { weight: '600', size: 10 },
+                        color: '#94A3B8'
                     },
                     tooltip: {
+                        backgroundColor: '#1A1F2E',
+                        borderColor: 'rgba(255,255,255,0.1)',
+                        borderWidth: 1,
+                        titleColor: '#F1F5F9',
+                        bodyColor: '#94A3B8',
+                        cornerRadius: 10,
+                        padding: 12,
                         callbacks: {
                             label: function(context) {
-                                var value = context.parsed.y || 0;
-                                var pct = total > 0 ? ((value / total) * 100).toFixed(1) + "%" : "0%";
-                                return " Stock: " + value + " unidades (" + pct + ")";
+                                var v = context.parsed.y || 0;
+                                var pct = total > 0 ? ((v / total) * 100).toFixed(1) + "%" : "0%";
+                                return " Stock: " + v + " unidades (" + pct + ")";
                             }
                         }
                     }

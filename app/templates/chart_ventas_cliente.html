@@ -1,54 +1,51 @@
 {% extends "appbuilder/base.html" %}
 
 {% block content %}
-<div class="container" style="max-width: 1020px; margin-top: 24px; margin-bottom: 48px; font-family: 'Inter', sans-serif;">
+<div class="container" style="max-width: 1080px; margin-top: 28px; margin-bottom: 48px; font-family: 'Inter', sans-serif;">
     <!-- Head -->
-    <div style="margin-bottom: 24px;">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #2563EB; font-weight: 700; display: inline-block; padding: 6px 16px; background: #DBEAFE; border: 1px solid #BFDBFE; border-radius: 999px; margin-bottom: 14px; box-shadow: 0 2px 4px rgba(37,99,235,0.06);">
+    <div style="margin-bottom: 28px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.6px; color: #3B82F6; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.15); border-radius: 999px; margin-bottom: 16px;">
             📊 Reporte Gráfico 02
         </span>
-        <h1 style="font-size: 28px; font-weight: 800; color: #0F172A; letter-spacing: -0.6px; margin: 0 0 6px 0;">
+        <h1 style="font-size: 32px; font-weight: 800; color: #F1F5F9; letter-spacing: -0.8px; margin: 0 0 8px 0;">
             Total de Ventas por Cliente
         </h1>
-        <p style="color: #475569; font-size: 14px; margin: 0;">
-            Análisis acumulado de ingresos monetarios facturados por cliente. Muestra el monto absoluto y la proporción porcentual de participación.
+        <p style="color: #94A3B8; font-size: 15px; margin: 0; line-height: 1.7;">
+            Análisis acumulado de ingresos monetarios facturados por cliente con porcentaje de participación.
         </p>
     </div>
 
     <!-- Chart Panel -->
-    <div style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); padding: 32px; margin-bottom: 24px;">
-        <h3 style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0 0 20px 0; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px;">
+    <div style="background: #1A1F2E; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); padding: 32px; margin-bottom: 24px;">
+        <h3 style="font-size: 14px; font-weight: 700; color: #F1F5F9; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 10px;">
             Ingresos Facturados (Bs) y Porcentaje de Participación
         </h3>
-        
-        <!-- Canvas wrapper with some padding for datalabels -->
         <div style="position: relative; width: 100%; height: 350px; padding-right: 90px; box-sizing: border-box;">
             <canvas id="salesChart"></canvas>
         </div>
     </div>
 
     <!-- Data Interpretation Panel -->
-    <div style="background: #F8FAFC; border-left: 4px solid #2563EB; border-radius: 8px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-        <h4 style="font-size: 13px; font-weight: 700; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+    <div style="background: #1A1F2E; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid #3B82F6; border-radius: 12px; padding: 22px 26px;">
+        <h4 style="font-size: 12px; font-weight: 700; color: #F1F5F9; text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 14px 0; display: flex; align-items: center; gap: 8px;">
             <span>📊</span> Interpretación de Datos (Análisis de Ingresos)
         </h4>
-        <div style="font-size: 12px; line-height: 1.6; color: #334155;">
-            <p style="margin-bottom: 8px;">
-                El volumen de facturación total registrado asciende a un acumulado de <strong>{{ "%.2f"|format(stats.total_recaudado) }} Bs</strong> distribuidos entre <strong>{{ stats.cantidad_clientes }} clientes activos</strong>. 
-                El análisis de concentración revela que el cliente con mayor volumen de compra es <strong>{{ stats.max_nombre }}</strong>, aportando un monto de <strong>{{ "%.2f"|format(stats.max_monto) }} Bs</strong>, lo que equivale al <strong>{{ stats.max_pct }}%</strong> de los ingresos totales de la empresa. Este cliente se consolida como una cuenta clave (VIP) que requiere atención prioritaria y estrategias personalizadas de fidelización.
+        <div style="font-size: 13px; line-height: 1.7; color: #94A3B8;">
+            <p style="margin-bottom: 10px;">
+                Facturación total acumulada: <strong style="color: #F1F5F9;">{{ "%.2f"|format(stats.total_recaudado) }} Bs</strong> distribuidos entre <strong style="color: #F1F5F9;">{{ stats.cantidad_clientes }} clientes activos</strong>.
+                El mayor comprador es <strong style="color: #3B82F6;">{{ stats.max_nombre }}</strong> con <strong style="color: #3B82F6;">{{ "%.2f"|format(stats.max_monto) }} Bs</strong> ({{ stats.max_pct }}%).
             </p>
-            <p style="margin-bottom: 8px;">
-                Por otro lado, la cuenta de menor facturación registrada corresponde a <strong>{{ stats.min_nombre }}</strong> con una contribución marginal de <strong>{{ "%.2f"|format(stats.min_monto) }} Bs</strong> (representando el <strong>{{ stats.min_pct }}%</strong> del total). 
-                La facturación media por cliente se sitúa en <strong>{{ "%.2f"|format(stats.promedio) }} Bs</strong>, un indicador clave para medir el rendimiento de la cartera comercial.
+            <p style="margin-bottom: 10px;">
+                Menor facturación: <strong style="color: #F59E0B;">{{ stats.min_nombre }}</strong> con <strong style="color: #F59E0B;">{{ "%.2f"|format(stats.min_monto) }} Bs</strong> ({{ stats.min_pct }}%).
+                Facturación media por cliente: <strong style="color: #F1F5F9;">{{ "%.2f"|format(stats.promedio) }} Bs</strong>.
             </p>
-            <p style="margin: 0; font-weight: 600; color: #1E293B;">
-                💡 Recomendación Operativa: Implementar planes de incentivos o descuentos por volumen para que los clientes medianos aumenten su ticket promedio y se acerquen a la facturación promedio del sistema, reduciendo así la dependencia de facturación en una sola cuenta clave.
+            <p style="margin: 0; font-weight: 600; color: #F1F5F9;">
+                💡 Recomendación: Implementar planes de incentivos para que clientes medianos aumenten su ticket promedio.
             </p>
         </div>
     </div>
 </div>
 
-<!-- Load Chart.js and DataLabels Plugin -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
@@ -58,98 +55,74 @@
         var values = {{ values|tojson }};
         var total = {{ stats.total_recaudado }};
 
-        // Register the DataLabels plugin
         Chart.register(ChartDataLabels);
+        Chart.defaults.color = '#94A3B8';
+        Chart.defaults.font.family = "'Inter', sans-serif";
 
-        // Initialize Horizontal Bar Chart
         var ctx = document.getElementById('salesChart').getContext('2d');
-        var salesChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Ventas Totales (Bs)',
                     data: values,
-                    backgroundColor: labels.map(function(label, index) {
-                        var palette = [
-                            'rgba(16, 185, 129, 0.85)',  // Emerald
-                            'rgba(59, 130, 246, 0.85)',  // Blue
-                            'rgba(99, 102, 241, 0.85)',  // Indigo
-                            'rgba(249, 115, 22, 0.85)',  // Orange
-                            'rgba(236, 72, 153, 0.85)',  // Pink
-                            'rgba(20, 184, 166, 0.85)',  // Teal
-                            'rgba(239, 68, 68, 0.85)',   // Coral/Red
-                            'rgba(245, 158, 11, 0.85)'   // Amber
-                        ];
-                        return palette[index % palette.length];
+                    backgroundColor: labels.map(function(l, i) {
+                        var p = ['rgba(16,185,129,0.8)', 'rgba(59,130,246,0.8)', 'rgba(99,102,241,0.8)',
+                                 'rgba(249,115,22,0.8)', 'rgba(236,72,153,0.8)', 'rgba(20,184,166,0.8)',
+                                 'rgba(239,68,68,0.8)', 'rgba(245,158,11,0.8)'];
+                        return p[i % p.length];
                     }),
-                    hoverBackgroundColor: labels.map(function(label, index) {
-                        var palette = [
-                            'rgba(16, 185, 129, 1)',
-                            'rgba(59, 130, 246, 1)',
-                            'rgba(99, 102, 241, 1)',
-                            'rgba(249, 115, 22, 1)',
-                            'rgba(236, 72, 153, 1)',
-                            'rgba(20, 184, 166, 1)',
-                            'rgba(239, 68, 68, 1)',
-                            'rgba(245, 158, 11, 1)'
-                        ];
-                        return palette[index % palette.length];
+                    hoverBackgroundColor: labels.map(function(l, i) {
+                        var p = ['rgba(16,185,129,1)', 'rgba(59,130,246,1)', 'rgba(99,102,241,1)',
+                                 'rgba(249,115,22,1)', 'rgba(236,72,153,1)', 'rgba(20,184,166,1)',
+                                 'rgba(239,68,68,1)', 'rgba(245,158,11,1)'];
+                        return p[i % p.length];
                     }),
-                    borderRadius: 6,
+                    borderRadius: 8,
                     borderWidth: 0,
                     barThickness: 32
                 }]
             },
             options: {
-                indexAxis: 'y', // Makes the bar chart horizontal
+                indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
                     x: {
-                        grace: '20%', // Adds a 20% empty buffer space on the right of the max value
-                        grid: {
-                            color: '#F1F5F9'
-                        },
-                        ticks: {
-                            font: { family: 'Inter, sans-serif', size: 11 },
-                            callback: function(value) { return value + ' Bs'; }
-                        }
+                        grace: '20%',
+                        grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false },
+                        ticks: { font: { size: 11 }, callback: function(v) { return v + ' Bs'; } }
                     },
                     y: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: { family: 'Inter, sans-serif', weight: 'bold', size: 11 }
-                        }
+                        grid: { display: false },
+                        ticks: { font: { weight: 'bold', size: 11 }, color: '#F1F5F9' }
                     }
                 },
                 plugins: {
-                    legend: {
-                        display: false // Hide legend since there is only one dataset
-                    },
+                    legend: { display: false },
                     datalabels: {
-                        anchor: 'end',
-                        align: 'right',
-                        offset: 8,
-                        formatter: function(value, context) {
+                        anchor: 'end', align: 'right', offset: 8,
+                        formatter: function(value) {
                             var pct = total > 0 ? ((value / total) * 100).toFixed(1) + "%" : "0%";
-                            return value.toLocaleString('es-BO', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " Bs (" + pct + ")";
+                            return value.toLocaleString('es-BO', {minimumFractionDigits: 2}) + " Bs (" + pct + ")";
                         },
-                        font: {
-                            family: 'Inter, sans-serif',
-                            weight: '600',
-                            size: 10
-                        },
-                        color: '#1E293B'
+                        font: { weight: '600', size: 10 },
+                        color: '#94A3B8'
                     },
                     tooltip: {
+                        backgroundColor: '#1A1F2E',
+                        borderColor: 'rgba(255,255,255,0.1)',
+                        borderWidth: 1,
+                        titleColor: '#F1F5F9',
+                        bodyColor: '#94A3B8',
+                        cornerRadius: 10,
+                        padding: 12,
                         callbacks: {
                             label: function(context) {
-                                var value = context.parsed.x || 0;
-                                var pct = total > 0 ? ((value / total) * 100).toFixed(1) + "%" : "0%";
-                                return " Ventas: " + value.toLocaleString('es-BO', {minimumFractionDigits: 2}) + " Bs (" + pct + ")";
+                                var v = context.parsed.x || 0;
+                                var pct = total > 0 ? ((v / total) * 100).toFixed(1) + "%" : "0%";
+                                return " Ventas: " + v.toLocaleString('es-BO', {minimumFractionDigits: 2}) + " Bs (" + pct + ")";
                             }
                         }
                     }

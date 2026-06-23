@@ -1,53 +1,53 @@
 {% extends "appbuilder/base.html" %}
 
 {% block content %}
-<div class="container" style="max-width: 1020px; margin-top: 24px; margin-bottom: 48px; font-family: 'Inter', sans-serif;">
+<div class="container" style="max-width: 1080px; margin-top: 28px; margin-bottom: 48px; font-family: 'Inter', sans-serif;">
     <!-- Head -->
-    <div style="margin-bottom: 24px;">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #15803D; font-weight: 700; display: inline-block; padding: 6px 16px; background: #DCFCE7; border: 1px solid #BBF7D0; border-radius: 999px; margin-bottom: 14px; box-shadow: 0 2px 4px rgba(21,128,61,0.06);">
+    <div style="margin-bottom: 28px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.6px; color: #10B981; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.15); border-radius: 999px; margin-bottom: 16px;">
             📊 Reporte Gráfico 01
         </span>
-        <h1 style="font-size: 28px; font-weight: 800; color: #0F172A; letter-spacing: -0.6px; margin: 0 0 6px 0;">
+        <h1 style="font-size: 32px; font-weight: 800; color: #F1F5F9; letter-spacing: -0.8px; margin: 0 0 8px 0;">
             Distribución de Productos por Categoría
         </h1>
-        <p style="color: #475569; font-size: 14px; margin: 0;">
-            Representación visual del volumen y proporción de productos registrados en el catálogo según su categoría correspondiente.
+        <p style="color: #94A3B8; font-size: 15px; margin: 0; line-height: 1.7;">
+            Representación visual del volumen y proporción de productos registrados en el catálogo según su categoría.
         </p>
     </div>
 
     <!-- Chart Panel -->
-    <div style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); padding: 32px; margin-bottom: 24px;">
+    <div style="background: #1A1F2E; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); padding: 32px; margin-bottom: 24px;">
         <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: center;">
             <!-- Canvas -->
-            <div style="flex: 1; min-width: 280px; max-width: 420px; position: relative;">
-                <canvas id="categoryChart" width="400" height="400"></canvas>
+            <div style="flex: 1; min-width: 260px; max-width: 380px; position: relative;">
+                <canvas id="categoryChart" width="380" height="380"></canvas>
             </div>
             <!-- Summary Table -->
             <div style="flex: 1; min-width: 280px;">
-                <h3 style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0 0 16px 0; border-bottom: 1.5px solid #F1F5F9; padding-bottom: 8px;">
+                <h3 style="font-size: 14px; font-weight: 700; color: #F1F5F9; margin: 0 0 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 10px;">
                     Resumen de Proporción
                 </h3>
                 <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
                         <thead>
-                            <tr style="border-bottom: 1px solid #E2E8F0;">
-                                <th style="text-align: left; padding: 8px 12px; color: #475569; font-weight: 600;">Categoría</th>
-                                <th style="text-align: right; padding: 8px 12px; color: #475569; font-weight: 600;">Cantidad</th>
-                                <th style="text-align: right; padding: 8px 12px; color: #475569; font-weight: 600;">Proporción</th>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                                <th style="text-align: left; padding: 8px 12px; color: #64748B; font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.7px;">Categoría</th>
+                                <th style="text-align: right; padding: 8px 12px; color: #64748B; font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.7px;">Cantidad</th>
+                                <th style="text-align: right; padding: 8px 12px; color: #64748B; font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.7px;">Proporción</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for i in range(labels|length) %}
-                            <tr style="border-bottom: 1px solid #F1F5F9;">
-                                <td style="padding: 8px 12px; font-weight: 500; color: #1E293B;">{{ labels[i] }}</td>
-                                <td style="text-align: right; padding: 8px 12px; font-family: monospace; font-weight: 600; color: #0F172A;">{{ values[i] }} u.</td>
-                                <td style="text-align: right; padding: 8px 12px; font-family: monospace; font-weight: 600; color: #15803D;" class="row-pct" data-val="{{ values[i] }}"></td>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                                <td style="padding: 10px 12px; font-weight: 500; color: #F1F5F9;">{{ labels[i] }}</td>
+                                <td style="text-align: right; padding: 10px 12px; font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #F1F5F9;">{{ values[i] }} u.</td>
+                                <td style="text-align: right; padding: 10px 12px; font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #10B981;" class="row-pct" data-val="{{ values[i] }}"></td>
                             </tr>
                             {% endfor %}
-                            <tr style="background: #F8FAFC; font-weight: 700; border-top: 1.5px solid #E2E8F0;">
-                                <td style="padding: 10px 12px; color: #0F172A;">Total General</td>
-                                <td style="text-align: right; padding: 10px 12px; font-family: monospace; color: #0F172A;">{{ stats.total }} u.</td>
-                                <td style="text-align: right; padding: 10px 12px; font-family: monospace; color: #0F172A;">100.0%</td>
+                            <tr style="background: rgba(255,255,255,0.02); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.08);">
+                                <td style="padding: 12px; color: #F1F5F9;">Total General</td>
+                                <td style="text-align: right; padding: 12px; font-family: 'JetBrains Mono', monospace; color: #F1F5F9;">{{ stats.total }} u.</td>
+                                <td style="text-align: right; padding: 12px; font-family: 'JetBrains Mono', monospace; color: #F1F5F9;">100.0%</td>
                             </tr>
                         </tbody>
                     </table>
@@ -57,28 +57,25 @@
     </div>
 
     <!-- Data Interpretation Panel -->
-    <div style="background: #F8FAFC; border-left: 4px solid #15803D; border-radius: 8px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-        <h4 style="font-size: 13px; font-weight: 700; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
+    <div style="background: #1A1F2E; border-left: 4px solid #10B981; border-radius: 12px; padding: 22px 26px; border: 1px solid rgba(255,255,255,0.06); border-left: 4px solid #10B981;">
+        <h4 style="font-size: 12px; font-weight: 700; color: #F1F5F9; text-transform: uppercase; letter-spacing: 0.8px; margin: 0 0 14px 0; display: flex; align-items: center; gap: 8px;">
             <span>📊</span> Interpretación de Datos (Análisis Ejecutivo)
         </h4>
-        <div style="font-size: 12px; line-height: 1.6; color: #334155;">
-            <p style="margin-bottom: 8px;">
-                El catálogo de la empresa actualmente dispone de un total consolidado de <strong>{{ stats.total }} productos</strong> distribuidos en sus diferentes líneas de comercialización. 
-                El análisis porcentual de inventarios revela que la categoría dominante con mayor variedad de productos corresponde a <strong>{{ stats.max_nombre }}</strong>, 
-                representando el <strong>{{ stats.max_pct }}%</strong> del total registrado en catálogo. Esto refleja un enfoque operativo altamente orientado hacia dicha categoría o una mayor rotación/demanda de sus productos asociados.
+        <div style="font-size: 13px; line-height: 1.7; color: #94A3B8;">
+            <p style="margin-bottom: 10px;">
+                El catálogo dispone de <strong style="color: #F1F5F9;">{{ stats.total }} productos</strong> distribuidos en diferentes líneas.
+                La categoría dominante es <strong style="color: #10B981;">{{ stats.max_nombre }}</strong> con el <strong style="color: #10B981;">{{ stats.max_pct }}%</strong> del total.
             </p>
-            <p style="margin-bottom: 8px;">
-                Por el contrario, la menor concentración de variedad se observa en la categoría de <strong>{{ stats.min_nombre }}</strong> con solo un <strong>{{ stats.min_pct }}%</strong> de la oferta total. 
-                Esto señala áreas de oportunidad para diversificar la oferta de catálogo o indica que esta categoría está enfocada en productos de alta gama o nicho específico con un número de variantes reducido.
+            <p style="margin-bottom: 10px;">
+                La menor concentración se encuentra en <strong style="color: #F59E0B;">{{ stats.min_nombre }}</strong> con un <strong style="color: #F59E0B;">{{ stats.min_pct }}%</strong> de la oferta total.
             </p>
-            <p style="margin: 0; font-weight: 600; color: #1E293B;">
-                💡 Recomendación Operativa: Mantener la estabilidad de stock en las categorías líderes y considerar la expansión controlada de catálogo en las de menor representación para capturar nichos adicionales del mercado informático.
+            <p style="margin: 0; font-weight: 600; color: #F1F5F9;">
+                💡 Recomendación: Mantener estabilidad en categorías líderes y expandir las de menor representación.
             </p>
         </div>
     </div>
 </div>
 
-<!-- Load Chart.js and DataLabels Plugin -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
@@ -88,78 +85,64 @@
         var values = {{ values|tojson }};
         var total = {{ stats.total }};
 
-        // Register the DataLabels plugin
         Chart.register(ChartDataLabels);
+        Chart.defaults.color = '#94A3B8';
+        Chart.defaults.font.family = "'Inter', sans-serif";
 
-        // Populate Table Percentages
         var pctElements = document.querySelectorAll(".row-pct");
         pctElements.forEach(function(el) {
             var val = parseFloat(el.getAttribute("data-val"));
-            var pct = total > 0 ? ((val / total) * 100).toFixed(1) + "%" : "0.0%";
-            el.textContent = pct;
+            el.textContent = total > 0 ? ((val / total) * 100).toFixed(1) + "%" : "0.0%";
         });
 
-        // Initialize Doughnut Chart
         var ctx = document.getElementById('categoryChart').getContext('2d');
-        var categoryChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'doughnut',
             data: {
                 labels: labels,
                 datasets: [{
                     data: values,
                     backgroundColor: [
-                        '#6366F1', // Indigo
-                        '#3B82F6', // Blue
-                        '#10B981', // Emerald
-                        '#F59E0B', // Amber
-                        '#EF4444', // Red
-                        '#EC4899', // Pink
-                        '#8B5CF6', // Purple
-                        '#14B8A6'  // Teal
+                        '#6366F1', '#3B82F6', '#10B981', '#F59E0B',
+                        '#EF4444', '#EC4899', '#8B5CF6', '#14B8A6'
                     ],
                     borderWidth: 2,
-                    borderColor: '#ffffff'
+                    borderColor: '#1A1F2E',
+                    hoverBorderColor: '#F1F5F9',
+                    hoverBorderWidth: 2,
+                    hoverOffset: 8
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
-                cutout: '60%', // Creates a modern, elegant ring design
+                cutout: '62%',
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: {
-                            font: {
-                                family: 'Inter, sans-serif',
-                                size: 11
-                            },
-                            usePointStyle: true,
-                            padding: 15
-                        }
+                        labels: { font: { size: 11, weight: '500' }, usePointStyle: true, padding: 16, color: '#94A3B8' }
                     },
                     datalabels: {
-                        formatter: function(value, context) {
-                            var pct = total > 0 ? ((value / total) * 100).toFixed(1) + "%" : "0%";
-                            // Only display percentage on slices that have more than 0 values
-                            return value > 0 ? pct : '';
+                        formatter: function(value) {
+                            return value > 0 ? ((value / total) * 100).toFixed(1) + "%" : '';
                         },
                         color: '#ffffff',
-                        font: {
-                            family: 'Inter, sans-serif',
-                            weight: 'bold',
-                            size: 11
-                        },
-                        textAlign: 'center',
-                        textShadowColor: 'rgba(0, 0, 0, 0.45)',
-                        textShadowBlur: 3
+                        font: { weight: 'bold', size: 11 },
+                        textShadowColor: 'rgba(0, 0, 0, 0.6)',
+                        textShadowBlur: 4
                     },
                     tooltip: {
+                        backgroundColor: '#1A1F2E',
+                        borderColor: 'rgba(255,255,255,0.1)',
+                        borderWidth: 1,
+                        titleColor: '#F1F5F9',
+                        bodyColor: '#94A3B8',
+                        cornerRadius: 10,
+                        padding: 12,
                         callbacks: {
                             label: function(context) {
-                                var label = context.label || '';
-                                var value = context.parsed || 0;
-                                var pct = total > 0 ? ((value / total) * 100).toFixed(1) + "%" : "0%";
-                                return " " + label + ": " + value + " u. (" + pct + ")";
+                                var pct = total > 0 ? ((context.parsed / total) * 100).toFixed(1) + "%" : "0%";
+                                return " " + context.label + ": " + context.parsed + " u. (" + pct + ")";
                             }
                         }
                     }
