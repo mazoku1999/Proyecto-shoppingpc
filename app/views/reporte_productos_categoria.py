@@ -59,15 +59,40 @@ class ReporteProductosCategoriaView(BaseView):
         )
 
 
-class ProductosPorCategoriaChartView(GroupByChartView):
-    """Gráfica nativa de FAB: productos agrupados por categoría."""
-    datamodel = SQLAInterface(Producto)
-    chart_title = "Cantidad de productos por categoría"
-    label_columns = {"categoria": "Categoría"}
-    chart_type = "PieChart"
-    definitions = [
-        {
-            "group": "categoria.nombre",
-            "series": [(aggregate_count, "id")],
+class ProductosPorCategoriaChartView(BaseView):
+    """Gráfica personalizada con Chart.js: productos agrupados por categoría."""
+    
+    @expose("/")
+    @has_access
+    def list(self):
+        sql = """
+        SELECT c.nombre AS categoria, COUNT(p.id) AS cantidad
+        FROM producto p
+        INNER JOIN categoria c ON p.categoria_id = c.id
+        GROUP BY c.id, c.nombre
+        """
+        data = db.session.execute(db.text(sql)).fetchall()
+        
+        total_productos = sum(item[1] for item in data)
+        max_item = max(data, key=lambda x: x[1]) if data else (None, 0)
+        min_item = min(data, key=lambda x: x[1]) if data else (None, 0)
+        
+        stats = {
+            "total": total_productos,
+            "max_nombre": max_item[0],
+            "max_cantidad": max_item[1],
+            "max_pct": round((max_item[1] / total_productos * 100), 1) if total_productos > 0 else 0,
+            "min_nombre": min_item[0],
+            "min_cantidad": min_item[1],
+            "min_pct": round((min_item[1] / total_productos * 100), 1) if total_productos > 0 else 0,
         }
-    ]
+        
+        labels = [item[0] for item in data]
+        values = [item[1] for item in data]
+        
+        return self.render_template(
+            "chart_productos_categoria.html",
+            labels=labels,
+            values=values,
+            stats=stats
+        )

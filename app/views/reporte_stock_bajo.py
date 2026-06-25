@@ -46,15 +46,40 @@ class ReporteStockBajoView(BaseView):
         )
 
 
-class StockPorCategoriaChartView(GroupByChartView):
-    """Gráfica nativa de FAB: cantidad de productos por categoría."""
-    datamodel = SQLAInterface(Producto)
-    chart_title = "Productos por categoría (inventario general)"
-    label_columns = {"categoria": "Categoría"}
-    chart_type = "ColumnChart"
-    definitions = [
-        {
-            "group": "categoria.nombre",
-            "series": [(aggregate_count, "id")],
+class StockPorCategoriaChartView(BaseView):
+    """Gráfica personalizada con Chart.js: cantidad de stock de productos por categoría."""
+    
+    @expose("/")
+    @has_access
+    def list(self):
+        sql = """
+        SELECT c.nombre AS categoria, COALESCE(SUM(p.stock), 0) AS total_stock
+        FROM producto p
+        INNER JOIN categoria c ON p.categoria_id = c.id
+        GROUP BY c.id, c.nombre
+        """
+        data = db.session.execute(db.text(sql)).fetchall()
+        
+        total_stock = sum(item[1] for item in data)
+        max_item = max(data, key=lambda x: x[1]) if data else (None, 0)
+        min_item = min(data, key=lambda x: x[1]) if data else (None, 0)
+        
+        stats = {
+            "total": int(total_stock),
+            "max_nombre": max_item[0],
+            "max_cantidad": int(max_item[1]),
+            "max_pct": round((max_item[1] / total_stock * 100), 1) if total_stock > 0 else 0,
+            "min_nombre": min_item[0],
+            "min_cantidad": int(min_item[1]),
+            "min_pct": round((min_item[1] / total_stock * 100), 1) if total_stock > 0 else 0,
         }
-    ]
+        
+        labels = [item[0] for item in data]
+        values = [int(item[1]) for item in data]
+        
+        return self.render_template(
+            "chart_stock_categoria.html",
+            labels=labels,
+            values=values,
+            stats=stats
+        )
