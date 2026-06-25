@@ -168,6 +168,23 @@ def configurar_roles():
     """
     sm = appbuilder.sm
 
+    # --- Admin (fix: permisos explícitos en gráficas BaseView) ------
+    rol_admin = sm.find_role("Admin")
+    if rol_admin:
+        vistas_chart = [
+            "ProductosPorCategoriaChartView",
+            "VentasPorClienteChartView",
+            "StockPorCategoriaChartView",
+            "ReporteProductosCategoriaView",
+            "ReporteVentasClienteView",
+            "ReporteStockBajoView",
+        ]
+        for vista in vistas_chart:
+            for permiso in ["can_list", "can_show", "can_chart"]:
+                pvm = sm.find_permission_view_menu(permiso, vista)
+                if pvm:
+                    sm.add_permission_role(rol_admin, pvm)
+
     # --- Supervisor -------------------------------------------------
     rol_supervisor = sm.find_role("Supervisor") or sm.add_role("Supervisor")
 
