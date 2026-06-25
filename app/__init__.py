@@ -172,7 +172,7 @@ def configurar_roles():
     rol_supervisor = sm.find_role("Supervisor") or sm.add_role("Supervisor")
 
     vistas_supervisor = [
-        "CategoriaView", "MarcaView", "ProductoView",
+        "CategoriaView", "MarcaView", "ProveedorView", "ProductoView",
         "ClienteView", "VentaView", "DetalleVentaView",
         "MovimientoInventarioView",
         "ReporteProductosCategoriaView", "ProductosPorCategoriaChartView",
@@ -180,10 +180,38 @@ def configurar_roles():
         "ReporteStockBajoView", "StockPorCategoriaChartView",
     ]
     for vista in vistas_supervisor:
-        for permiso in ["can_list", "can_show", "can_add", "can_edit"]:
+        for permiso in ["can_list", "can_show", "can_add", "can_edit", "can_chart"]:
             pvm = sm.find_permission_view_menu(permiso, vista)
             if pvm:
                 sm.add_permission_role(rol_supervisor, pvm)
+
+    # Menús autorizados para Supervisor (excluye Seguridad/Security)
+    menus_supervisor = [
+        "Catálogo", "Categorías", "Marcas", "Proveedores", "Productos",
+        "Ventas", "Clientes",
+        "Inventario", "Movimientos de Inventario",
+        "Reportes", "Productos por Categoría", "Gráfica: Productos por Categoría",
+        "Ventas por Cliente", "Gráfica: Ventas por Cliente", "Stock Bajo", "Gráfica: Stock por Categoría"
+    ]
+    for menu_name in menus_supervisor:
+        pvm = sm.find_permission_view_menu("menu_access", menu_name)
+        if pvm:
+            sm.add_permission_role(rol_supervisor, pvm)
+
+    # Crear usuario supervisor si no existe o asignarle el rol Supervisor
+    user_supervisor = sm.find_user(username="supervisor")
+    if not user_supervisor:
+        sm.add_user(
+            username="supervisor",
+            first_name="Supervisor",
+            last_name="General",
+            email="supervisor@shoppingpc.com",
+            role=rol_supervisor,
+            password="supervisor123"
+        )
+    else:
+        if rol_supervisor not in user_supervisor.roles:
+            user_supervisor.roles.append(rol_supervisor)
 
     # --- Usuario ----------------------------------------------------
     rol_usuario = sm.find_role("Usuario") or sm.add_role("Usuario")
@@ -194,6 +222,16 @@ def configurar_roles():
             pvm = sm.find_permission_view_menu(permiso, vista)
             if pvm:
                 sm.add_permission_role(rol_usuario, pvm)
+
+    # Menús autorizados para Usuario
+    menus_usuario = [
+        "Catálogo", "Productos",
+        "Ventas", "Clientes", "Ventas"
+    ]
+    for menu_name in menus_usuario:
+        pvm = sm.find_permission_view_menu("menu_access", menu_name)
+        if pvm:
+            sm.add_permission_role(rol_usuario, pvm)
 
     from flask import current_app
     from app import db
