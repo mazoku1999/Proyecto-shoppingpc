@@ -7,6 +7,8 @@ from flask_appbuilder.models.group import aggregate_count
 
 from app.models.categoria import Categoria
 from app.models.producto import Producto
+from app.services.gemini_service import generate_forecasts
+
 
 
 class ReporteProductosCategoriaView(BaseView):
@@ -90,9 +92,20 @@ class ProductosPorCategoriaChartView(BaseView):
         labels = [item[0] for item in data]
         values = [item[1] for item in data]
         
+        # Generar resumen de datos para la IA
+        summary_parts = []
+        for item in data:
+            pct = round((item[1] / total_productos * 100), 1) if total_productos > 0 else 0
+            summary_parts.append(f"{item[0]}: {item[1]} unidades ({pct}%)")
+        data_summary = f"Total de productos en catálogo: {total_productos}. Distribución por categorías: {', '.join(summary_parts)}."
+        
+        forecasts = generate_forecasts("Distribución de Productos por Categoría", data_summary)
+        
         return self.render_template(
             "chart_productos_categoria.html",
             labels=labels,
             values=values,
-            stats=stats
+            stats=stats,
+            forecasts=forecasts
         )
+

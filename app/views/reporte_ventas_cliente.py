@@ -5,6 +5,8 @@ from flask_appbuilder.models.sqla.interface import SQLAInterface
 from flask_appbuilder.models.group import aggregate_sum
 
 from app.models.venta import Venta
+from app.services.gemini_service import generate_forecasts
+
 
 
 class ReporteVentasClienteView(BaseView):
@@ -71,9 +73,20 @@ class VentasPorClienteChartView(BaseView):
         labels = [item[0] for item in data]
         values = [float(item[1]) for item in data]
         
+        # Generar resumen de datos para la IA
+        summary_parts = []
+        for item in data:
+            pct = round((float(item[1]) / float(total_recaudado) * 100), 1) if total_recaudado > 0 else 0
+            summary_parts.append(f"{item[0]}: {float(item[1]):.2f} Bs ({pct}%)")
+        data_summary = f"Total facturado: {float(total_recaudado):.2f} Bs. Ventas por cliente: {', '.join(summary_parts)}."
+        
+        forecasts = generate_forecasts("Ventas por Cliente", data_summary)
+        
         return self.render_template(
             "chart_ventas_cliente.html",
             labels=labels,
             values=values,
-            stats=stats
+            stats=stats,
+            forecasts=forecasts
         )
+

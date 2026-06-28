@@ -12,8 +12,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = "123456789shoppingpc0987"
 
 # The SQLAlchemy connection string.
-# SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, "app.db")
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:incos2024@localhost:3306/shoppingpc'
+# Usa la base de datos MySQL local con las credenciales proporcionadas.
+SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:incos2024@localhost:3306/shoppingpc"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 # SQLALCHEMY_DATABASE_URI = 'postgresql://root:password@localhost/myapp'
 
 # Flask-WTF flag for CSRF
